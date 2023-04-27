@@ -1,0 +1,26 @@
+<launch>
+  <arg name="model" default="$(find my_robot)/urdf/urdf1.xacro"/>
+  <!-- <arg name="rvizconfig" default="$(find my_robot)/config/urdf.rviz" /> -->
+  <arg name="world_name" default="worlds/empty.world"/> 
+ 
+  <include file="$(find my_robot)/launch/spawn.launch">
+    <arg name="model" value="$(arg model)" />
+    <arg name="world_name" value="$(arg world_name)"/>
+  </include>
+
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" /> -->
+
+  <rosparam file="$(find my_robot)/config/controller.yaml" command="load"/>
+
+  <rosparam file="$(find my_robot)/config/joints_links.yaml" command="load"/>
+
+  <node name="rdif_control_spawner" pkg="controller_manager" type="spawner"
+  respawn="true" output="screen" args="mobile_base_controller joint_state"/>
+
+  <!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/mobile_base_controller/cmd_vel"/>
+  </node> -->
+  <!-- <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
+        <remap from="/cmd_vel" to="/mobile_robot/mobile_base_controller/cmd_vel"/>
+    </node> -->
+</launch>
