@@ -55,5 +55,5 @@ $ rostopic info /scan
 $ rostopic echo /scan
 ```
 
-`Ctrl+C` - to stop everything currently in the terminal
+`Ctrl+C` - to stop everything currently running in the terminal
 
