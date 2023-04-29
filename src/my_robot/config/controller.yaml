@@ -1,5 +1,5 @@
 mobile_base_controller:
-  type        : "diff_drive_controller/DiffDriveController"
+  type        : "skid_steer_drive_controller/SkidSteerDriveController"
   left_wheel: ['left_front_wheel_joint', 'left_back_wheel_joint']
   right_wheel: ['right_front_wheel_joint', 'right_back_wheel_joint']
   publish_rate: 50
